@@ -26,6 +26,7 @@ app.get('/weatherApi',function (req,res){
     getWeather(req.query.city,req.query.units,res,0);
 });
 
+
 //Start the server and listen on port 3000
 var server = app.listen(3000, function () {
     var host = server.address().address;
@@ -33,13 +34,13 @@ var server = app.listen(3000, function () {
     console.log('Example Weather app listening at http://%s:%s',host,port);
 });
 
-/*Sends get request to open weather map server and parses the response if it succeeds
 
+/*Sends get request to open weather map server and parses the response if it succeeds
  * @param city String that contains a zip code or city name
  * @param units string that is either Imperial, Standard, or Metric to denote unit
  * @param res response stream to send response to
  * @param detailed boolean flag (1 or 0) to show detailed html or send json
- 
+
  */
 function getWeather(city,units,res,detailed){
     console.log('Requesting weather for: '+ city + ' with unit: ' + units);
@@ -58,12 +59,11 @@ function getWeather(city,units,res,detailed){
 	});
 };
 
-/*Parses the weather API response
 
+/*Parses the weather API response
  * @param response response from the weather api server to parse
  * @param res response stream to send response to
  * @param detailed boolean flag (1 or 0) to show detailed html or send json
- 
  */
 function parseResponse(response,res, detailed){
     var parsedData = JSON.parse(response);
