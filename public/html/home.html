@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- Thomas Boop Example Weather application -->
+<html>
+	<body>
+		<h1> Weather Application </h1>
+		<h3> Please pick a unit and enter a city name or zip code. </h3>
+		<p><b>City Name: </b> 
+		
+		<input name="cityName" type="text" placeholder="Raleigh, NC or 27519" maxlength="60" id="cityName" class="searchField" autocomplete="off" title="" /> 
+		<input type="submit" name="nameSearch" value="Check Weather"  id="nameSearch" class="nameSearch" />
+			<script type="text/javascript">
+				var button= document.getElementById('nameSearch');
+				button.onclick= function(){
+					var city = document.getElementById('cityName').value;
+					if(!city)
+						alert("Please enter a city");
+					else{
+						var unit = document.querySelector('input[name="unit"]:checked').value;
+						location.href='weather?city='+city+'&units='+unit;
+					}
+				}
+			</script>
+		</p>
+		
+	<form action="">
+		<input type="radio" name="unit" value="Standard" checked>Kelvin <br>
+		<input type="radio" name="unit" value="Metric">Celsius<br>
+		<input type="radio" name="unit" value="Imperial">Fahrenheit<br>
+	</form>
+	</body>
+</html>
