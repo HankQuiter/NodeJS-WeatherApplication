@@ -13,10 +13,10 @@ app.set('view engine', 'jade');
 
 //Starting page for app, redirects to /weather
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '/public/html/home.html'));
+    res.sendFile(path.join(__dirname, '/public/html/home.html'));
 });
 
-//detailed view form of application, should return a html page
+//Detailed view form of application, should return a html page
 app.get('/weather', function (req, res) {
     getWeather(req.query.city,req.query.units,res,1);
 });
@@ -26,13 +26,21 @@ app.get('/weatherApi',function (req,res){
     getWeather(req.query.city,req.query.units,res,0);
 });
 
+//Start the server and listen on port 3000
 var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Example Weather app listening at http://%s:%s',host,port);
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('Example Weather app listening at http://%s:%s',host,port);
 });
 
-//Sends get request to open weather map server and parses the response if it succeeds
+/*Sends get request to open weather map server and parses the response if it succeeds
+
+ * @param city String that contains a zip code or city name
+ * @param units string that is either Imperial, Standard, or Metric to denote unit
+ * @param res response stream to send response to
+ * @param detailed boolean flag (1 or 0) to show detailed html or send json
+ 
+ */
 function getWeather(city,units,res,detailed){
     console.log('Requesting weather for: '+ city + ' with unit: ' + units);
     if(isNaN(city)) //user entered a city, send to the city api
@@ -50,15 +58,22 @@ function getWeather(city,units,res,detailed){
 	});
 };
 
+/*Parses the weather API response
+
+ * @param response response from the weather api server to parse
+ * @param res response stream to send response to
+ * @param detailed boolean flag (1 or 0) to show detailed html or send json
+ 
+ */
 function parseResponse(response,res, detailed){
     var parsedData = JSON.parse(response);
-    if(parsedData.cod!=200) { //Was not able to get data for that city, just send back the server error
+    if(parsedData.cod != 200) { //Was not able to get data for that city, just send back the server error
         res.send(response);
         return;
     }
     
     //display the data in json response or a detailed view based on flag   
-    if(detailed!=1){ //simple json response
+    if(detailed != 1){ //simple json response
         var formattedResponse= '{'
             +'"lon":"' + parsedData.coord.lon
             +'","lat":"' + parsedData.coord.lat
