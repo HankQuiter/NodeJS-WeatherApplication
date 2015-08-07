@@ -2,13 +2,15 @@
   "name": "weather.js",
   "version": "1.0.0",
   "description": "Node.JS express Weather Application",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "express": "4.12.x",
+		"cfenv": "1.0.x"
   }
 }
