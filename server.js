@@ -5,6 +5,8 @@
 
 var express = require('express');
 var request = require('request');
+var cfenv = require('cfenv');
+
 var path = require('path');
 var app = express();
 var apiKey = '355e806e0c6b3aa9c5c24c36144d073b';
@@ -27,11 +29,10 @@ app.get('/weatherApi',function (req,res){
 });
 
 
-var host = process.env.VCAP_APP_HOST || 'localhost';
-var port = process.env.VCAP_APP_PORT || 1337
+var appEnv = cfenv.getAppEnv()
 //Start the server and listen on port 3000
-var server = app.listen(80, function () {
-    console.log('Example Weather app listening at http://%s:%s',host,port);
+var server = app.listen(appEnv.port, function () {
+    console.log('Example Weather app listening at http://%s:%s',appEnv.url,port);
 });
 
 
