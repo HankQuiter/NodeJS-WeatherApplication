@@ -29,10 +29,9 @@ app.get('/weatherApi',function (req,res){
 });
 
 
-var appEnv = cfenv.getAppEnv()
-//Start the server and listen on port 3000
-var server = app.listen(appEnv.port, function () {
-    console.log('Example Weather app listening at http://%s:%s',appEnv.url,port);
+var port=process.env.VCAP_APP_PORT || 1337;
+http.createServer(app).listen(port), function(){
+console.log('Express server listening on port ' + port);
 });
 
 
