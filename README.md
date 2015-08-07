@@ -12,3 +12,5 @@ Navigate to the root folder and start the application with node index.js.
  * The map on the detailed page may take a little while to load the data, and really only displays weather data for certain countries
  * Navigation is a lot smoother using the navigation buttons rather then dragging to move
  * The map overlay API is done by http://www.wxtiles.com/ and requires a free registration to use on any site other then localhost
+##
+ This app is available on bluemix
