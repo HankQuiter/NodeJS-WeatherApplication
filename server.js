@@ -28,7 +28,7 @@ app.get('/weatherApi',function (req,res){
 
 
 //Start the server and listen on port 3000
-var server = app.listen(3000, function () {
+var server = app.listen(80, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log('Example Weather app listening at http://%s:%s',host,port);
