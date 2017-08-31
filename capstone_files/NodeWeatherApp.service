@@ -10,6 +10,6 @@ RestartSec=10
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=nodejs-example
-WorkingDirectory=/home/user/NodeJS-WeatherApplication/
+WorkingDirectory=/home/ubuntu/NodeJS-WeatherApplication/
 [Install]
 WantedBy=multi-user.target
