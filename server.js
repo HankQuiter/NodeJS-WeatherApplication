@@ -6,10 +6,10 @@
 var express = require('express');
 var request = require('request');
 var cfenv = require('cfenv');
-
+var http = require('http');
 var path = require('path');
 var app = express();
-var apiKey = '355e806e0c6b3aa9c5c24c36144d073b';
+var apiKey = '00575bb834b303de4dcacc3d874729dd';
 var apiEndpoint = 'http://api.openweathermap.org/data/2.5/weather';
 app.set('view engine', 'jade');
 
@@ -29,10 +29,10 @@ app.get('/weatherApi',function (req,res){
 });
 
 
-var port=process.env.VCAP_APP_PORT || 1337;
+var port=process.env.VCAP_APP_PORT || 8080;
 http.createServer(app).listen(port), function(){
 console.log('Express server listening on port ' + port);
-});
+}
 
 
 /*Sends get request to open weather map server and parses the response if it succeeds
@@ -45,9 +45,9 @@ console.log('Express server listening on port ' + port);
 function getWeather(city,units,res,detailed){
     console.log('Requesting weather for: '+ city + ' with unit: ' + units);
     if(isNaN(city)) //user entered a city, send to the city api
-        var url = apiEndpoint + '?q=' + city + '&units=' + units + '&key=' + apiKey;
+        var url = apiEndpoint + '?q=' + city + '&units=' + units + '&APPID=' + apiKey;
 	else //user entered a number, assume it is a zip code and send to zip api
-        var url = apiEndpoint+'?zip='+ city + '&units=' + units + '&key=' + apiKey;
+        var url = apiEndpoint+'?zip='+ city + '&units=' + units + '&APPID=' + apiKey;
     //Send the request
     request.get(url,
 	function (error, response, body) {
