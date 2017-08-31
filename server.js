@@ -29,8 +29,9 @@ app.get('/weatherApi',function (req,res){
 });
 
 
-var port=process.env.VCAP_APP_PORT || 8080;
-http.createServer(app).listen(port), function(){
+var port=process.env.NODE_PORT || 8080;
+var bind_address=process.env.NODE_LISTEN_ADDRESS || "0.0.0.0";
+http.createServer(app).listen(port,bind_address), function(){
 console.log('Express server listening on port ' + port);
 }
 
